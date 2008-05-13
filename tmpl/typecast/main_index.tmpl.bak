@@ -1,0 +1,6 @@
+<$MTSetVar name="main_index_page" value="1"$>
+<$MTIncludeModule module="header-index"$>
+<$MTIncludeModule module="banner-index"$>
+<$MTIncludeModule module="entry-list"$>
+<$MTIncludeModule module="entry-list-navigation"$>
+<$MTIncludeModule module="footer"$>

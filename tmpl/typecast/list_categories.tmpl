@@ -1,0 +1,17 @@
+<$MTSetVar name="list_categories_page" value="1"$>
+<$MTIncludeModule module="header-archives"$>
+<$MTIncludeModule module="banner-archives"$>
+
+<h2 class="comments-header"><$MTTrans phrase="List all categories"$></h2>
+<p>
+<MTIfVar name="blog_has_categories">
+<MTCategories>
+<MTBlogIfArchives archive_type="Category"><a href="<$MTCategoryArchiveLink encode_html="1"$>"><$MTCategoryLabel encode_html="1"$></a><MTElse><$MTCategoryLabel encode_html="1"$></MTElse></MTBlogIfArchives><br />
+</MTCategories>
+<MTElse>
+<$MTTrans phrase="The category is not found."$>
+</MTElse>
+</MTIfVar>
+</p>
+
+<$MTIncludeModule module="footer"$>

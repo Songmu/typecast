@@ -1,0 +1,40 @@
+<mt:setvar name="individual_page" value="1">
+<mt:include name="include/header-individual.tmpl">
+<mt:include name="include/banner-individual.tmpl">
+
+<h2 class="entry-header"><$MTEntryTitle$></h2>
+<div class="entry-body"><$MTEntryBody sanitize="img/ class src,a href,p,div style,span style,hr,ul,li,h1,h2,h3,br/"$></div>
+
+<MTPaginatedEntryNav>
+<p><MTEntryHasPrevPage><a href="<$MTEntryPrevPageLink encode_html="1"$>">&laquo;<__transe phrase="Prev"></a> </MTEntryHasPrevPage>(<$MTEntryCurrentPage$>)<MTEntryHasNextPage> <a href="<$MTEntryNextPageLink encode_html="1"$>"><__transe phrase="Next">&raquo;</a></MTEntryHasNextPage></p>
+</MTPaginatedEntryNav>
+
+<p class="entry-footer">
+<MTIfNonEmpty tag="EntryIfCategories">
+<MTEntryCategories glue=" | "><a href="<$MTCategoryArchiveLink encode_html="1"$>"><$MTCategoryLabel$></a></MTEntryCategories><br />
+</MTIfNonEmpty>
+
+<$MTEntryDate format="%x %R"$>
+</p>
+
+<hr class="border" />
+<p class="nav">
+<MTEntryPrevious>
+<a href="<$MTEntryPermalink encode_html="1"$>" title="<$MTEntryTitle encode_html="1"$>"><__transe phrase="Prev"></a> |
+</MTEntryPrevious>
+<a href="<$MTBlogURL encode_html="1"$>"><__transe phrase="Main"></a>
+<MTEntryNext>
+| <a href="<$MTEntryPermalink$>" title="<$MTEntryTitle encode_html="1"$>"><__transe phrase="Next"></a>
+</MTEntryNext>
+</p>
+
+<mt:include name="include/footer-ad.tmpl">
+
+<MTIfCommentsActive>
+<hr class="border" />
+<h3 class="comments-header"><__transe phrase="Comments"></h3>
+<p><a href="<$MTTypeCastCommentLink encode_html="1"$>" accesskey="2"><__trans phrase="View Comments"$> (<$MTEntryCommentCount$>)</a></p>
+<mt:include name="include/comment-form.tmpl">
+</MTIfCommentsActive>
+
+<mt:include name="include/footer-individua.tmpl">

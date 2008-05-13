@@ -1,0 +1,152 @@
+#!/usr/bin/env perl
+# $Id$
+use strict;
+use warnings;
+
+use Getopt::Long;
+use Pod::Usage;
+use CSS;
+
+my ($output);
+GetOptions(
+    '--output' => \$output,
+) or pod2usage();
+my $file = shift or pod2usage('Required original css filename');
+
+my $css = CSS->new({ parser => 'CSS::Parse::Packed' });
+$css->read_file($file);
+
+## Considered to emoticons color of DoCoMo devices, makes body[color] empty
+## if the body is light background.
+my $bg_rgb = get_bgcolor('#alpha', '#beta', '#container-inner', 'body') || '#fff';
+my $fg_rgb = brightness($bg_rgb) < 125 ? get_attr_value('body[color]') : '';
+
+my ($bc);
+my @data = (
+    body => [
+        'background-color' => get_bgcolor('body') || $bg_rgb,
+        color => $fg_rgb,
+    ],
+    '#container' => [
+        'background-color' => $bg_rgb,
+    ],
+    '#banner' => [
+        'background-color' => get_bgcolor('#banner-inner', '#banner'),
+        color => get_attr_value('#banner[color]', '#banner a[color]'),
+        'border-top' => $bc = get_attr_value('#banner[border-top-color]', '#banner[border-color]'),
+        'border-top-width' => $bc && '5px',
+        'border-top-style' => $bc && 'solid',
+    ],
+    h1 => [
+        color => get_attr_value('#banner-header a[color]', '#banner a[color]'),
+    ],
+    h2 => [
+        color => get_attr_value('#banner-description[color]',
+                                '.entry-header[color]',
+                                '#banner a[color]'),
+    ],
+    h3 => [
+        color => get_attr_value('.module-header[color]',
+                                '.entry-header[color]',
+                                '#banner a[color]'),
+    ],
+    a => [
+        color => get_attr_value('a[color]', '.module-content a'),
+    ],
+    '.entry-header' => [
+        'background-color' => get_bgcolor('.entry-header'),
+        color   => get_attr_value('.entry-header[color]'),
+    ],
+    '.entry-footer, .comment-footer' => [
+        bgcolor => get_bgcolor('.entry-footer'),
+        color   => get_attr_value('.entry-footer[color]', '.entry-footer a[color]')
+    ],
+    '.comments-header, .comments-open-header' => [
+        'background-color' => get_bgcolor('.comments-header',
+                                          '.module-header',
+                                          '.entry-header'),
+        color => get_attr_value('.comments-header[color]',
+                                '.module-header[color]',
+                                '.entry-header[color]'),
+    ],
+    'hr.border' => [
+        'border-color' => get_attr_value('.entry-footer[border-top-color]') || '#ccc',
+    ],
+);
+
+my $mobile = '';
+while (@data) {
+    my $selector = shift @data;
+    my $styles   = shift @data;
+    my $style = '';
+    while (@$styles) {
+        my $attr = shift @$styles;
+        my $val  = shift @$styles or next;
+        $style .= join(':', $attr, $val) . '; ';
+    }
+    $mobile .= sprintf "$selector \{ $style\}\n", $selector, $style;
+}
+
+unless ($output) {
+    print $mobile;
+}
+else {
+    $file =~ s/\.css$/-mobile.css/;
+    open my $fh, '>', $file or die "can't create $file";
+    print $fh $mobile;
+    close $fh;
+    print "$file\n";
+}
+
+
+sub get_attr_value {
+    my @styles = @_;
+    for (@styles) {
+        my ($selector, $property) = $_ =~ /^(.+)\[(\S+)\]$/;
+        my $style = $css->get_style_by_selector($selector) or next;
+        my $prop  = $style->get_property_by_name($property) or next;
+        my $val   = (split /\s+/, $prop->values)[0];
+        return $val if $val;
+    }
+    return '';
+}
+
+sub get_bgcolor {
+    my @selectors = @_;
+    for my $selector (@selectors) {
+        my $color = get_attr_value($selector.'[background]',
+                                   $selector.'[background-color]');
+        return $color if $color && $color =~ /^#[0-9a-fA-F]{3,6}/;
+    }
+    return '';
+}
+
+sub brightness {
+    my $rgb = shift or return;
+    $rgb =~ s/^#//;
+    my ($r, $g, $b) = (length $rgb == 6)
+                    ? map { hex $_ } (unpack 'A2A2A2', $rgb)
+                    : map { hex "$_$_" } (unpack 'AAA', $rgb)
+                    ;
+    return (($r * 299) + ($g * 587) + ($b * 114)) / 1000;
+}
+
+__END__
+
+=pod
+
+=head1 NAME
+
+create-mobilecss - Generate mobile css from typepad theme's css
+
+=head1 SYNOPSIS
+
+./typepad/tools/create-mobilecss  [options...] <original css file>
+
+=head1 OPTIONS
+
+=head2 -o|--output
+
+Output mobile css file.
+
+=cut

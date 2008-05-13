@@ -1,0 +1,39 @@
+<$MTSetVar name="about_page" value="1"$>
+<$MTIncludeModule module="header-about"$>
+<$MTIncludeModule module="banner-about"$>
+
+<MTUserIfShow field="photo">
+<hr class="border" />
+<$MTIncludeModule module="photo"$>
+</MTUserIfShow>
+<hr class="border" />
+<MTUserIfAnyContactInfo>
+<h2 class="comments-header"><$MTTrans phrase="Contact"$></h2>
+<ul class="module-list">
+<MTUserIfShow field="email"><li class="module-list-item"><$MTTrans phrase="Email Address:"$> <$MTUserEmail$></li></MTUserIfShow>
+<MTUserIfShow field="aim"><li class="module-list-item"><$MTTrans phrase="AIM Name:"$> <$MTUserAIM$></li></MTUserIfShow>
+<MTUserIfShow field="icq"><li class="module-list-item"><$MTTrans phrase="ICQ Number:"$> <$MTUserICQ$></li></MTUserIfShow>
+<MTUserIfShow field="yahoo"><li class="module-list-item"><$MTTrans phrase="Yahoo! ID:"$> <$MTUserYahoo$></li></MTUserIfShow>
+<MTUserIfShow field="msn"><li class="module-list-item"><$MTTrans phrase="MSN Messenger:"$> <$MTUserMSN$></li></MTUserIfShow>
+<MTUserIfShow field="url"><li class="module-list-item"><$MTTrans phrase="Website:"$> <$MTUserURL$></li></MTUserIfShow>
+<MTUserIfShow field="location"><li class="module-list-item"><$MTTrans phrase="Location:"$> <$MTUserLocation$></li></MTUserIfShow>
+<MTUserIfShow field="pgp"><li class="module-list-item"><$MTUserPublicKeyLink$></li></MTUserIfShow>
+</ul>
+</MTUserIfAnyContactInfo>
+<MTUserIfShow field="minibio">
+<hr class="border" />
+<h2 class="comments-header"><$MTTrans phrase="One-Line Bio"$></h2>
+<p><$MTUserMiniBio$></p>
+</MTUserIfShow>
+<MTUserIfShow field="bio">
+<hr class="border" />
+<h2 class="comments-header"><$MTTrans phrase="Biography"$></h2>
+<$MTUserBio convert_breaks="1"$>
+</MTUserIfShow>
+<MTUserIfShow field="interests">
+<hr class="border" />
+<h2 class="comments-header"><$MTTrans phrase="Interests"$></h2>
+<p><$MTUserInterests$></p>
+</MTUserIfShow>
+
+<$MTIncludeModule module="footer"$>

@@ -1,0 +1,21 @@
+<$MTSetVar name="preview_comment_page" value="1"$>
+<$MTIncludeModule module="header-individual"$>
+<$MTIncludeModule module="banner-individual"$>
+
+<MTCommentPreviewIsError>
+<h2 class="comments-header"><MTTypeCastIcon icon="notice"><$MTTrans phrase="An error occurred..."$></h2>
+<p class="comments-content"><strong><$MTErrorMessage$></strong></p>
+<MTElse>
+<h2 class="comments-header"><MTTypeCastIcon icon="comment"><$MTTrans phrase="Previewing your Comment"$></h2>
+<$MTCommentPreviewBody$>
+<p class="comment-footer"><MTTypeCastIcon icon="clock"><$MTCommentPreviewDate$> | <MTTypeCastIcon icon="editor"><MTCommentPreviewAuthor default="Anonymous"></p>
+</MTElse>
+</MTCommentPreviewIsError>
+
+<MTEntryIfAllowComments>
+<hr class="border" />
+<$MTSetVar name="preview" value="1"$>
+<$MTIncludeModule module="comment-form"$>
+</MTEntryIfAllowComments>
+
+<$MTIncludeModule module="footer"$>

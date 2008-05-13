@@ -1,0 +1,43 @@
+<MTEntryIfCommentsOpen>
+<h3 class="comments-open-header"><MTTypeCastIcon icon="comment"><$MTTrans phrase="Post a comment"$></h3>
+<form method="post" action="<$MTTypeCastAppURL$>" id="comments_form">
+<div>
+<input type="hidden" name="__mode" value="handle_comment" />
+<input type="hidden" name="blog_id" value="<$MTBlogID$>" />
+<input type="hidden" name="user_id" value="<$MTUserID$>" />
+<input type="hidden" name="entry_id" value="<$MTEntryID$>" />
+</div>
+<dl>
+<dt>
+<label for="comment-author"><$MTTrans phrase="Name"$><MTTypeCastIfDisallowAnonComments><$MTTrans phrase="(Required)"$></MTTypeCastIfDisallowAnonComments>:</label>
+</dt>
+<dd>
+<input type="text" id="comment-author" name="comment-author" value="<MTIfVar name="preview"><$MTCommentPreviewAuthor encode_html="1"$></MTIfVar>" istyle="1" />
+</dd>
+<dt>
+<label for="comment-email"><$MTTrans phrase="Email"$><MTTypeCastIfDisallowAnonComments><$MTTrans phrase="(Required)"$></MTTypeCastIfDisallowAnonComments>:</label>
+</dt>
+<dd>
+<input type="text" id="comment-email" name="comment-email" value="<MTIfVar name="preview"><$MTCommentPreviewEmail encode_html="1"$></MTIfVar>" istyle="3" />
+</dd>
+<dt>
+<label for="comment-url"><$MTTrans phrase="URL:"$></label>
+</dt>
+<dd>
+<input type="text" name="comment-url" id="comment-url" value="<MTIfVar name="preview"><$MTCommentPreviewURL encode_html="1"$></MTIfVar>" istyle="3" />
+</dd>
+<dt>
+<label for="comment-text"><$MTTrans phrase="Comment:"$></label>
+</dt>
+<dd>
+<textarea id="text" name="comment-text" rows="4" cols="18"><MTIfVar name="preview"><$MTCommentPreviewSubmittedBody encode_html="1"$></MTIfVar></textarea>
+</dd>
+</dl>
+<div>
+<input type="submit" name="preview" value="<$MTTrans phrase="Preview"$>" /> <input type="submit" name="post" value="<$MTTrans phrase="_POST_VERB"$>" />
+</div>
+</form>
+<MTElse>
+<p><$MTTrans phrase="The comments to this entry are closed."$></p>
+</MTElse>
+</MTEntryIfCommentsOpen>

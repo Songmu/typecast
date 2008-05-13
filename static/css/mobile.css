@@ -1,0 +1,12 @@
+.body { margin: 0; padding:0; }
+h1 { margin:0; padding: 0.5em 0 0.5em 3px; }
+h2, h3 { margin: 3px 0; padding: 0.5em 0 0.5em 3px; } 
+div#container { margin: 0; padding: 0; }
+p.entry-footer, .entry-more-link, p.posted, p.comment-footer { text-align: right; font-size: 90%; }
+p.nav { margin: 0; padding: 0.2em 0; text-align: center; }
+hr.border { border-style: solid; border-width: 1px; margin: 0; padding: 0; }
+ul.footer { margin: 0 ! important; padding: 0.2em 0 ! important; }
+ul.footer li { list-style-type: none; margin: 0; padding: 0.2em 0; }
+address { margin: 0; padding: 0.2em 0; text-align: center; font-size: 85%; }
+form#comments_form div { text-align: center; }
+form#comments_form dl dd { margin: 0; padding: 0.2em 0; }

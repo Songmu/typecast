@@ -1,0 +1,984 @@
+handler: TypeCast::AgentSpec::add_spec
+
+data:
+## 200x
+    - name: n2001
+      width: 118
+      height: 128
+
+    - name: n2002
+      width: 118
+      height: 128
+
+    - name: p2002
+      width: 118
+      height: 128
+
+## 210x
+    - name: d2101v
+      width: 120
+      height: 130
+
+    - name: p2101v
+      width: 163
+      height: 182
+
+    - name: f2102v
+      width: 176
+      height: 182
+
+    - name: n2102v
+      width: 176
+      height: 198
+
+    - name: p2102v
+      width: 176
+      height: 198
+
+    - name: sh2101v
+      width: 800
+      height: 600
+
+    - name: t2101v
+      width: 176
+      height: 144
+
+## 2051
+    - name: f2051
+      width: 176
+      height: 182
+
+    - name: n2051
+      width: 176
+      height: 198
+
+## 2701
+    - name: n2701
+      width: 176
+      height: 198
+
+## 209i
+    - name: d209i
+      width: 96
+      height: 90
+
+    - name: er209i
+      width: 120
+      height: 72
+
+    - name: f209i
+      width: 96
+      height: 91
+
+    - name: ko209i
+      width: 96
+      height: 96
+
+    - name: n209i
+      width: 108
+      height: 82
+
+    - name: p209i
+      width: 96
+      height: 87
+
+    - name: r209i
+      width: 96
+      height: 72
+
+## 209iS
+    - name: p209is
+      width: 96
+      height: 87
+
+## 210i
+    - name: d210i
+      width: 96
+      height: 91
+
+    - name: f210i
+      width: 96
+      height: 113
+
+    - name: ko210i
+      width: 96
+      height: 96
+
+    - name: n210i
+      width: 118
+      height: 113
+
+    - name: p210i
+      width: 96
+      height: 91
+
+    - name: so210i
+      width: 120
+      height: 113
+
+## 211i
+    - name: d211i
+      width: 100
+      height: 91
+
+    - name: f211i
+      width: 96
+      height: 113
+
+    - name: n211i
+      width: 118
+      height: 128
+
+    - name: p211i
+      width: 120
+      height: 130
+
+    - name: r211i
+      width: 96
+      height: 98
+
+    - name: so211i
+      width: 120
+      height: 112
+
+## 211iS
+    - name: n211is
+      width: 118
+      height: 128
+
+    - name: p211is
+      width: 120
+      height: 130
+
+## 212i
+    - name: f212i
+      width: 132
+      height: 136
+
+    - name: so212i
+      width: 120
+      height: 112
+
+## 213
+    - name: so213i
+      width: 120
+      height: 112
+
+    - name: so213is
+      width: 120
+      height: 112
+
+    - name: so213iwr
+      width: 120
+      height: 112
+
+## 251i
+    - name: d251i
+      width: 132
+      height: 144
+
+    - name: f251i
+      width: 132
+      height: 140
+
+    - name: n251i
+      width: 132
+      height: 140
+
+    - name: sh251i
+      width: 120
+      height: 130
+
+## 251is
+    - name: d251is
+      width: 132
+      height: 144
+
+    - name: n251is
+      width: 132
+      height: 140
+
+    - name: p251is
+      width: 132
+      height: 144
+
+    - name: sh251is
+      width: 176
+      height: 187
+
+## 252i
+    - name: d252i
+      width: 176
+      height: 198
+
+    - name: n252i
+      width: 132
+      height: 140
+
+    - name: p252i
+      width: 132
+      height: 144
+
+    - name: p252is
+      width: 132
+      height: 144
+
+    - name: sh252i
+      width: 132
+      height: 144
+
+## 253i
+    - name: d253i
+      width: 176
+      height: 198
+
+    - name: n253i
+      width: 160
+      height: 180
+
+    - name: p253i
+      width: 132
+      height: 144
+
+    - name: d253iwm
+      width: 176
+      height: 198
+
+    - name: p253is
+      width: 132
+      height: 144
+
+## 501i
+    - name: d501i
+      width: 96
+      height: 72
+
+    - name: f501i
+      width: 112
+      height: 84
+
+    - name: n501i
+      width: 118
+      height: 128
+
+    - name: p501i
+      width: 96
+      height: 120
+
+## 502i
+    - name: d502i
+      width: 96
+      height: 90
+
+    - name: f502i
+      width: 96
+      height: 91
+
+    - name: f502it
+      width: 96
+      height: 91
+
+    - name: n502i
+      width: 118
+      height: 128
+
+    - name: n502it
+      width: 118
+      height: 128
+
+    - name: nm502i
+      width: 111
+      height: 106
+
+    - name: p502i
+      width: 96
+      height: 117
+
+    - name: so502i
+      width: 120
+      height: 120
+
+    - name: so502iwm
+      width: 120
+      height: 113
+
+## 503i
+    - name: d503i
+      width: 132
+      height: 126
+
+    - name: f503i
+      width: 120
+      height: 130
+
+    - name: n503i
+      width: 118
+      height: 128
+
+    - name: p503i
+      width: 120
+      height: 130
+
+    - name: so503i
+      width: 120
+      height: 113
+
+## 503iS
+    - name: d503is
+      width: 132
+      height: 126
+
+    - name: f503is
+      width: 120
+      height: 130
+
+    - name: n503is
+      width: 118
+      height: 128
+
+    - name: p503is
+      width: 120
+      height: 130
+
+    - name: so503is
+      width: 120
+      height: 113
+
+## 504i
+    - name: d504i
+      width: 132
+      height: 144
+
+    - name: f504i
+      width: 132
+      height: 136
+
+    - name: n504i
+      width: 160
+      height: 180
+
+    - name: p504i
+      width: 132
+      height: 144
+
+    - name: so504i
+      width: 120
+      height: 112
+
+## 504iS
+    - name: f504is
+      width: 132
+      height: 136
+
+    - name: n504is
+      width: 160
+      height: 180
+
+    - name: p504is
+      width: 132
+      height: 144
+
+## 505i
+    - name: d505i
+      width: 240
+      height: 270
+
+    - name: f505i
+      width: 240
+      height: 268
+
+    - name: n505i
+      width: 240
+      height: 270
+
+    - name: p505i
+      width: 240
+      height: 266
+
+    - name: sh505i
+      width: 240
+      height: 252
+
+    - name: so505i
+      width: 256
+      height: 240
+
+## 505iS
+    - name: d505is
+      width: 240
+      height: 270
+
+    - name: n505is
+      width: 240
+      height: 270
+
+    - name: p505is
+      width: 240
+      height: 266
+
+    - name: sh505is
+      width: 240
+      height: 252
+
+    - name: so505is
+      width: 240
+      height: 256
+
+    - name: f505igps
+      width: 240
+      height: 268
+
+## 506i
+    - name: d506i
+      width: 240
+      height: 270
+
+    - name: f506i
+      width: 240
+      height: 268
+
+    - name: n506i
+      width: 240
+      height: 295
+
+    - name: p506ic
+      width: 240
+      height: 266
+
+    - name: sh506ic
+      width: 240
+      height: 252
+
+    - name: so506i
+      width: 240
+      height: 256
+
+    - name: so506ic
+      width: 240
+      height: 256
+
+## 506iS
+    - name: n506is
+      width: 240
+      height: 295
+
+    - name: so506is
+      width: 240
+      height: 256
+
+    - name: n506is2
+      width: 240
+      height: 295
+
+## 60x
+    - name: l600i
+      width: 176
+      height: 189
+
+    - name: n600i
+      width: 176
+      height: 180
+
+    - name: l601i
+      width: 170
+      height: 189
+
+    - name: n601i
+      width: 240
+      height: 270
+
+    - name: l602i
+      width: 170
+      height: 189
+
+## 651
+    - name: p651ps
+      width: 96
+      height: 87
+
+## 661
+    - name: f661i
+      width: 132
+      height: 136
+
+## 67x
+    - name: f671i
+      width: 120
+      height: 126
+
+    - name: f671is
+      width: 160
+      height: 120
+
+    - name: f672i
+      width: 160
+      height: 120
+
+## 69x
+    - name: r691i
+      width: 96
+      height: 72
+
+    - name: r692i
+      width: 96
+      height: 98
+
+## 700i
+    - name: f700i
+      width: 230
+      height: 240
+
+    - name: p700i
+      width: 240
+      height: 270
+
+    - name: sh700i
+      width: 240
+      height: 252
+
+    - name: n700i
+      width: 240
+      height: 270
+
+## 700iS
+    - name: f700is
+      width: 230
+      height: 240
+
+    - name: sh700is
+      width: 240
+      height: 252
+
+    - name: sh700is
+      width: 240
+      height: 252
+
+    - name: sa700is
+      width: 240
+      height: 252
+
+## 701i
+    - name: d701i
+      width: 230
+      height: 240
+
+    - name: n701i
+      width: 240
+      height: 270
+
+    - name: p701id
+      width: 240
+      height: 270
+
+    - name: d701iwm
+      width: 230
+      height: 240
+
+    - name: n701ieco
+      width: 240
+      height: 270
+
+## 702i
+    - name: p702i
+      width: 240
+      height: 270
+
+    - name: n702id
+      width: 240
+      height: 270
+
+    - name: f702id
+      width: 230
+      height: 240
+
+    - name: sh702id
+      width: 240
+      height: 240
+
+    - name: d702i
+      width: 230
+      height: 240
+
+    - name: so702i
+      width: 240
+      height: 256
+
+    - name: d702ibcl
+      width: 230
+      height: 240
+
+    - name: sa702i
+      width: 240
+      height: 252
+
+## 702iS
+    - name: sh702is
+      width: 240
+      height: 240
+
+    - name: n702is
+      width: 240
+      height: 270
+
+    - name: p702id
+      width: 240
+      height: 270
+
+    - name: d702if
+      width: 230
+      height: 240
+
+    - name: m702is
+      width: 240
+      height: 267
+
+    - name: m702ig
+      width: 240
+      height: 267
+
+## 703i
+    - name: n703id
+      width: 240
+      height: 270
+
+    - name: f703i
+      width: 230
+      height: 240
+
+    - name: p703i
+      width: 240
+      height: 270
+
+    - name: d703i
+      width: 230
+      height: 240
+
+    - name: sh703i
+      width: 240
+      height: 240
+
+    - name: n703imyu
+      width: 240
+      height: 270
+
+    - name: p703imyu
+      width: 240
+      height: 270
+
+    - name: so703i
+      width: 240
+      height: 368
+
+## 704i
+    - name: so704i
+      width: 240
+      height: 368
+
+    - name: f704i
+      width: 230
+      height: 240
+
+    - name: n704imyu
+      width: 240
+      height: 270
+
+    - name: sh704i
+      width: 240
+      height: 320
+
+    - name: d704i
+      width: 230
+      height: 240
+
+    - name: p704imyu
+      width: 240
+      height: 270
+
+## 800i
+    - name: sa800i
+      width: 240
+      height: 252
+
+    - name: d800ids
+      width: 230
+      height: 240
+
+## 821i
+    - name: n821i
+      width: 118
+      height: 128
+
+    - name: p821i
+      width: 118
+      height: 128
+
+    - name: sh821i
+      width: 96
+      height: 78
+
+## 850i
+    - name: nm850ig
+      width: 176
+      height: 144
+
+## 851i
+    - name: p851i
+      width: 240
+      height: 270
+
+    - name: sh851i
+      width: 240
+      height: 252
+
+    - name: d851iwm
+      width: 230
+      height: 320
+
+## 88x
+    - name: f880ies
+      width: 240
+      height: 256
+
+    - name: f881ies
+      width: 240
+      height: 256
+
+    - name: f882ies
+      width: 240
+      height: 256
+
+    - name: f883i
+      width: 240
+      height: 256
+
+    - name: f883ies
+      width: 240
+      height: 256
+
+## 900i
+    - name: d900i
+      width: 240
+      height: 270
+
+    - name: f900i
+      width: 230
+      height: 240
+
+    - name: n900i
+      width: 240
+      height: 269
+
+    - name: p900i
+      width: 240
+      height: 266
+
+    - name: sh900i
+      width: 240
+      height: 252
+
+## 900iS/iX
+    - name: f900ic
+      width: 230
+      height: 240
+
+    - name: f900it
+      width: 230
+      height: 240
+
+    - name: n900is
+      width: 240
+      height: 269
+
+    - name: p900iv
+      width: 240
+      height: 266
+
+    - name: n900ig
+      width: 240
+      height: 269
+
+    - name: n900il
+      width: 240
+      height: 269
+
+## 901i
+    - name: d901i
+      width: 230
+      height: 240
+
+    - name: f901ic
+      width: 230
+      height: 240
+
+    - name: n901ic
+      width: 240
+      height: 270
+
+    - name: p901i
+      width: 240
+      height: 270
+
+    - name: sh901ic
+      width: 240
+      height: 252
+
+## 901iS
+    - name: d901is
+      width: 230
+      height: 240
+
+    - name: f901is
+      width: 230
+      height: 240
+
+    - name: p901is
+      width: 240
+      height: 270
+
+    - name: sh901is
+      width: 240
+      height: 252
+
+    - name: n901is
+      width: 240
+      height: 270
+
+    - name: p901itv
+      width: 240
+      height: 270
+
+## 902i
+    - name: d902i
+      width: 230
+      height: 320
+
+    - name: f902i
+      width: 230
+      height: 240
+
+    - name: n902i
+      width: 240
+      height: 270
+
+    - name: p902i
+      width: 240
+      height: 270
+
+    - name: sh902i
+      width: 240
+      height: 240
+
+    - name: so902i
+      width: 240
+      height: 256
+
+## 902iS
+    - name: sh902is
+      width: 240
+      height: 240
+
+    - name: p902is
+      width: 240
+      height: 270
+
+    - name: n902is
+      width: 240
+      height: 270
+
+    - name: d902is
+      width: 230
+      height: 320
+
+    - name: f902is
+      width: 230
+      height: 320
+
+    - name: so902iwp+
+      width: 240
+      height: 256
+
+    - name: sh902isl
+      width: 240
+      height: 240
+
+    - name: n902ix
+      width: 240
+      height: 270
+
+    - name: n902il
+      width: 240
+      height: 270
+
+## 903i
+    - name: sh903i
+      width: 240
+      height: 320
+
+    - name: p903i
+      width: 240
+      height: 270
+
+    - name: n903i
+      width: 240
+      height: 270
+
+    - name: d903i
+      width: 230
+      height: 320
+
+    - name: f903i
+      width: 230
+      height: 240
+
+    - name: so903i
+      width: 240
+      height: 368
+
+    - name: d903itv
+      width: 230
+      height: 320
+
+    - name: f903ix
+      width: 230
+      height: 240
+
+    - name: p903itv
+      width: 240
+      height: 350
+
+    - name: sh903itv
+      width: 240
+      height: 320
+
+    - name: f903ibsc
+      width: 230
+      height: 240
+
+    - name: p903ix
+      width: 240
+      height: 270
+
+    - name: so903itv
+      width: 240
+      height: 368
+
+## 904i
+    - name: sh904i
+      width: 240
+      height: 320
+
+    - name: n904i
+      width: 240
+      height: 352
+
+    - name: f904i
+      width: 240
+      height: 240
+
+    - name: d904i
+      width: 240
+      height: 320
+
+    - name: p904i
+      width: 240
+      height: 350

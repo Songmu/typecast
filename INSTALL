@@ -1,0 +1,13 @@
+Require CPAN modules:
+
+ * HTTP::MobileAgent
+ * UNIVERSAL::isa
+ * Error
+ * Error::Simple
+ * CSS
+ * CSS::Parse::Packed
+ * Class::Singleton
+ * Date::Parse
+ * HTML::Split
+
+Other cpan modules in extlib.

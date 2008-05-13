@@ -1,0 +1,22 @@
+<$mt:setvar name="list_comments_page" value="1"$>
+<mt:include name="include/header-individual.tmpl">
+<mt:include name="include/banner-individual.tmpl">
+
+<h2 class="comments-header"><__trans phrase="Comments:"><a href="<$MTEntryPermalink encode_html="1"$>"><$MTEntryTitle generate="1"$></a></h2>
+<p><__trans phrase="Showing [_1] - [_2] of [_3] comments." param="MTTypeCastCommentFrom%%MTTypeCastCommentTo%%MTEntryCommentCount"></p>
+
+<MTComments>
+<a id="comment-<$MTCommentID$>" name="comment-<$MTCommentID$>"></a>
+<$MTCommentBody trim_to="2000"$>
+<p class="comment-footer">
+<$MTCommentDate format="%x %X"$><br />
+<MTCommentAuthor default="Anonymous">
+</p>
+</MTComments>
+
+<MTEntryIfAllowComments>
+<hr class="border" />
+<mt:include name="include/comment-form.tmpl">
+</MTEntryIfAllowComments>
+
+<mt:include name="include/footer.tmpl">

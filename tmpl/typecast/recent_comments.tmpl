@@ -1,0 +1,17 @@
+<$MTSetVar name="recent_comments_page" value="1"$>
+
+<$MTIncludeModule module="header-archives"$>
+<$MTIncludeModule module="banner-archives"$>
+
+<h2 class="comments-header"><$MTTrans phrase="Recent Comments"$></h2>
+<p class="comment">
+<MTComments>
+<MTTypeCastIcon icon="comment"><$MTTypeCastCommentExcerpt$><br />
+<a href="<$MTTypeCastCommentLink$>#comment-<$MTCommentID$>"><$MTTrans phrase="Read more"$></a>
+<MTCommentEntry>
+<p class="comment-footer"><$MTCommentAuthor$> <$MTTrans phrase="on"$> <a href="<$MTEntryPermalink$>"><$MTEntryTitle generate="1"$></a></p>
+</MTCommentEntry>
+</MTComments>
+</p>
+
+<$MTIncludeModule module="footer"$>

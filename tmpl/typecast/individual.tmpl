@@ -1,0 +1,16 @@
+<mt:setvar name="individual_page" value="1">
+<mt:include name="include/header-individual.tmpl">
+<mt:include name="include/banner-individual.tmpl">
+
+<h2 class="entry-header"><$MTEntryTitle$></h2>
+<div class="entry-body"><$MTEntryBody sanitize="img/ class src,a href,p,div style,span style,hr,ul,li,h1,h2,h3,br/"$></div>
+
+<p class="entry-footer">
+<MTEntryCreatedDate format="%x %X">
+</p>
+
+<hr class="border" />
+<h3 class="comments-header"><__trans phrase="Comments"></h3>
+<p><a href="<$MTTypeCastCommentLink encode_html="1"$>" accesskey="2"><__trans phrase="Comments"> (<$MTEntryCommentCount$>)</a></p>
+
+<mt:include name="include/footer-individual.tmpl">
