@@ -1,0 +1,14 @@
+Installing the TypeCast.
+
+ * You have already got codes from svn, you look this document.
+
+    % svn co http://typecastmobile.googlecode.com/svn/trunk tc
+
+ * Installing CPAN modules used by TypeCast.
+
+    % cd tc
+    % perl -Ilib -MCPAN -e 'install Bundle::TypeCast'
+
+ * Create configuration file and editting some settings for your environment.
+
+    % cp mt-config.cgi-original mt-config.cgi
