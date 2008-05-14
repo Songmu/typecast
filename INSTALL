@@ -12,3 +12,11 @@ Installing the TypeCast.
  * Create configuration file and editting some settings for your environment.
 
     % cp mt-config.cgi-original mt-config.cgi
+
+
+Installing MovableType Plugin if you need.
+
+  This plugin extends the Movable Type Atom API for TypeCast.
+  This plugin requires MTOS 4.15 beta4 or greator.
+
+ * Move the mtplugin/TypeCast directory to your plugins directory.
