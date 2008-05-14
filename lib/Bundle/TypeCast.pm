@@ -8,11 +8,11 @@ __END__
 
 =head1 NAME
 
-Bundle::LWP - install all libwww-perl related modules
+Bundle::TypeCast - install all TypeCast related modules
 
 =head1 SYNOPSIS
 
- perl -MCPAN -e 'install Bundle::TypeCast'
+  perl -MCPAN -e 'install Bundle::TypeCast'
 
 =head1 CONTENTS
 
