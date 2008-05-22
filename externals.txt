@@ -1,2 +1,4 @@
-mtlib http://code.sixapart.com/svn/movabletype/branches/release-37/lib
-extlib http://code.sixapart.com/svn/movabletype/branches/release-37/extlib
+mtlib http://code.sixapart.com/svn/movabletype/branches/release-38/lib
+extlib http://code.sixapart.com/svn/movabletype/branches/release-38/extlib
+extlib/Data http://code.sixapart.com/svn/Data-ObjectDriver/trunk/lib/Data
+build/mt-dists http://code.sixapart.com/svn/movabletype/branches/release-38/build/mt-dists
