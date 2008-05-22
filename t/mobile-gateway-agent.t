@@ -1,8 +1,6 @@
-#!/usr/bin/perl
+# $Id$
 use strict;
-use FindBin qw($Bin);
-use lib "$Bin/../../cpan-lib";
-
+use FindBin qw( $Bin );
 use Test::More tests => 13;
 use YAML;
 

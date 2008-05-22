@@ -36,5 +36,8 @@ mtlib/MT.pm: %: %.pre build/mt-dists/$(BUILD_PACKAGE).mk build/mt-dists/default.
 	    -e 's!__PUBLISH_CHARSET__!$(PUBLISH_CHARSET)!g' \
 	    $< > $@
 
+test:
+	@prove -l -Imtlib -Iextlib t
+
 clean:
 	-rm -rf mtlib/MT.pm

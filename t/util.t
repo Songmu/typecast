@@ -1,9 +1,5 @@
+# $Id$
 use strict;
-use warnings;
-use FindBin qw($Bin);
-use lib "$Bin/../../core/lib";
-
-use TypeCore::Bootstrap app => 'typepad', test => 1;
 use Test::More tests => 6;
 
 use_ok('TypeCast::Util');
