@@ -4,10 +4,10 @@ Installing the TypeCast.
 
     % svn co http://typecastmobile.googlecode.com/svn/trunk tc
 
- * Installing CPAN modules used by TypeCast.
+ * Install CPAN modules used by TypeCast and build MTOS.
 
     % cd tc
-    % perl -Ilib -MCPAN -e 'install Bundle::TypeCast'
+    % make
 
  * Create configuration file and editting some settings for your environment.
 
