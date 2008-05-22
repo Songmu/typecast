@@ -16,6 +16,8 @@ Bundle::TypeCast - install all TypeCast related modules
 
 =head1 CONTENTS
 
+Encode::JP::Mobile
+
 HTTP::MobileAgent
 
 UNIVERSAL::isa
