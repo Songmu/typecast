@@ -36,6 +36,16 @@ sub _callback_get_post {
     my $blog = $entry->blog;
     _add_next_prev_link($blog, $entry, $atom, 'next', 'next');
     _add_next_prev_link($blog, $entry, $atom, 'prev', 'previous');
+
+    ## TODO: This should be done in MT::AtomServer, no, really.
+    my ($replies) = grep {
+        $_->rel eq 'replies'
+    } $atom->links;
+    if ($replies) {
+        require XML::Atom;
+        my $ns = XML::Atom::Namespace->new(thr => 'http://purl.org/syndication/thread/1.0');
+        $replies->set($ns, 'count', $entry->comment_count);
+    }
 }
 
 sub _setup_next_prev {

@@ -116,20 +116,28 @@ sub created_on {
 
 sub _init_comments {
     my $entry = shift;
+    $entry->{__comments_info} = { allow => 0, count => 0 };
     for my $link ($entry->atom->link) {
         if ($link->rel eq 'entry.comments') {
             ## TODO: support $link->get($ns, $attr) in XML::Atom
             my $count = ($link->as_xml =~ /comment:count="(\d+)"/)[0] || 0;
             my $allow = ($link->as_xml =~ /comment:allow="(\d+)"/)[0] || 1;
             Encode::_utf8_off($count);
-            $entry->{__comments_info} = {
-                allow => $allow,
-                count => $count,
-            };
+            $entry->{__comments_info}->{count} = $count;
+            $entry->{__comments_info}->{allow} = $allow;
             return;
         }
+        elsif ($link->rel eq 'replies') {
+            ## TODO: support $link->get($ns, $attr) in XML::Atom
+            #require XML::Atom;
+            #my $ns = XML::Atom::Namespace->new(thr => 'http://purl.org/syndication/thread/1.0');
+            #my $count = $link->get($ns, 'count');
+            # Try count attribute specified in Atom ThreadingExtension
+            my $count = ($link->as_xml =~ /thr:count="(\d+)"/)[0] || 0;
+            Encode::_utf8_off($count);
+            $entry->{__comments_info}->{count} = $count;
+        }
     }
-    $entry->{__comments_info} = { allow => 0, count => 0 };
 }
 
 sub allow_comments {
