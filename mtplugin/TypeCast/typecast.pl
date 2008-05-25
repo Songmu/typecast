@@ -38,7 +38,6 @@ sub _callback_get_posts {
 
     my $app = MT->instance;
     my %arg = %{ $app->{param} };
-    ## TODO: Need a patch for R37 MT::AtomServer to designate limit by typecast.
     $arg{limit} ||= 20 + 1;
 
     _setup_next_prev($feed, $blog, \%arg);
