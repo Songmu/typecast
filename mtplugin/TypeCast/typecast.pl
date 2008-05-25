@@ -7,15 +7,30 @@ our $VERSION = '0.01';
 
 use base qw( MT::Plugin );
 
-MT->add_plugin(__PACKAGE__->new({
+my $plugin = __PACKAGE__->new({
+    id          => 'typecast',
     name        => 'TypeCast',
     description => 'Extend Atom API for TypeCast',
     author_name => 'Hiroshi Sakai',
     version     => $VERSION,
-}));
+    system_config_template => 'system_config.tmpl',
+    settings    => new MT::PluginSettings([
+        [ 'tc_cgi_url', { Default => 'http://example.com/tc/tc.cgi', Scope => 'system' } ],
+    ]),
+    registry => {
+        tags => {
+            function => {
+                TypeCastLink => \&TypeCastLink,
+            },
+        },
+    },
+});
+MT->add_plugin($plugin);
 
 MT->add_callback('get_posts', 0, undef, \&_callback_get_posts);
 MT->add_callback('get_post',  0, undef, \&_callback_get_post);
+
+sub instance { $plugin }
 
 sub _callback_get_posts {
     my $cb = shift;
@@ -91,6 +106,23 @@ sub _add_next_prev_link {
 sub _atom_script_url {
     my $app = MT->instance;
     $app->base . $app->app_path . $app->script;
+}
+
+sub TypeCastLink {
+    my $ctx  = shift;
+    my $blog = $ctx->stash('blog') or return '';
+
+    my $url = __PACKAGE__->instance->get_config_value('tc_cgi_url');
+
+    my (@queries, $mode);
+    push @queries, 'blog_id='.$blog->id;
+    if (my $entry = $ctx->stash('entry')) {
+        push @queries, 'entry_id='.$entry->id;
+        $mode = 'individual';
+    }
+
+    sprintf qq{<link rel="alternate" media="handheld" href="%s?%s%s" />},
+        $url, ($mode ? "__mode=$mode&amp;" : ''), join('&amp;', @queries);
 }
 
 1;
