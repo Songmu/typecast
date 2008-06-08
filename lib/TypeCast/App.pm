@@ -15,7 +15,6 @@ use MT::Category;
 use MT::Util qw( decode_url remove_html encode_url );
 use MT::Memcached;
 
-use TypeCast;
 use TypeCast::Util;
 use TypeCast::ContentFilter;
 use TypeCast::Template::Context;
@@ -927,20 +926,22 @@ sub expires {
 
 sub _atom_client {
     my $app = shift;
-    unless ($app->{__atom_client}) {
-        require XML::Atom::Client;
-        my $client = XML::Atom::Client->new;
-        $client->username($app->config->TCAtomAPIUsername);
-        $client->password($app->config->TCAtomAPIPassword);
-        $client->{ua}->agent('TypeCast/' . TypeCast->VERSION);
-        ## handling basic authentication
-        my $cred = $app->get_header('Authorization');
-        if ($cred && $cred =~ m{^Basic }) {
-            $client->{ua}->default_header('X-TC-Authorization' => $cred);
-        }
-        $app->{__atom_client} = $client;
+    return $app->{__atom_client} if $app->{__atom_client};
+
+    require XML::Atom::Client;
+    require TypeCast;
+
+    my $client = XML::Atom::Client->new;
+    $client->username($app->config->TCAtomAPIUsername);
+    $client->password($app->config->TCAtomAPIPassword);
+    $client->{ua}->agent('TypeCast/' . TypeCast->VERSION);
+    ## handling basic authentication
+    my $cred = $app->get_header('Authorization');
+    if ($cred && $cred =~ m{^Basic }) {
+        $client->{ua}->default_header('X-TC-Authorization' => $cred);
     }
-    return $app->{__atom_client};
+
+    return $app->{__atom_client} = $client;
 }
 
 sub _agent_spec {
