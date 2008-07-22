@@ -3,11 +3,13 @@ package TypeCast::ContentFilter::DoCoMoFOMA;
 use strict;
 use warnings;
 
-use base qw(TypeCast::ContentFilter::Base);
+use base qw( TypeCast::ContentFilter::Base );
 
 use CSS;
 
-my %no_style_tags = map { $_ => 1 } qw(h1 h2 h3 h4 h5 h6 a address);
+my %no_style_tags    = map {$_ => 1} qw( h1 h2 h3 h4 h5 h6 a address );
+my %no_text_tags     = map {$_ => 1} qw( br hr img input );
+my %no_decorate_tags = map {$_ => 1} qw( span textarea );
 my %emoticon_map = (
     video       => '&#xE677;',
     audio       => '&#xE67A;',
@@ -79,6 +81,18 @@ sub no_style_tag {
     $no_style_tags{$tagname};
 }
 
+sub no_text_tag {
+    my $filter = shift;
+    my($tagname) = @_;
+    $no_text_tags{$tagname};
+}
+
+sub no_decorate_tag {
+    my $filter = shift;
+    my($tagname) = @_;
+    $no_decorate_tags{$tagname};
+}
+
 sub is_block_tag {
     my $filter = shift;
     my($tagname) = @_;
@@ -104,18 +118,23 @@ sub do_output_tag {
     if ($filter->no_style_tag($tagname)) {
         my $style = delete $attr->{style};
         @$attrseq = grep { $_ ne 'style' } @$attrseq;
-        if ($filter->is_block_tag($tagname)) {
+        ## Enclosing block tag with div.
+        if ($filter->is_block_tag($tagname) && $style) {
             $cb{pre} = sub {
-                $filter->{typecast_output} .= qq(<div style="$style">) if $style;
-            };
-        } else {
-            $cb{post} = sub {
-                $filter->{typecast_output} .= $style ? qq(<span style="$style">) : qq(<span>);
+                $filter->{typecast_output} .= qq(<div style="$style">);
             };
         }
     }
-
-    if ($tagname eq 'br/') {
+    elsif ($tagname ne 'span') {
+        if ($attr->{style}) {
+            $attr->{style} =~ s/font\-size\s*:\s*[\w\-]+;?//;
+        }
+    }
+    elsif ($tagname eq 'label') {
+        $tagname = 'span';
+        delete $attr->{for};
+    }
+    elsif ($tagname eq 'br/') {
         $tagname = 'br';
         $attr->{'/'} = '__BOOLEAN__';
         push(@$attrseq, q{/});
@@ -140,21 +159,53 @@ sub declaration {
 sub end {
     my $filter = shift;
     my($tagname, $text) = @_;
+
+    unless ($filter->no_text_tag($tagname)) {
+        pop @{ $filter->{text_styles_tree} };
+    }
+
     my $current = $filter->{typecast_current}->[-1];
-    if ($current && $current->[0] eq $tagname) {
+    if ($current && ($current->{tagname}||'') eq $tagname) {
         pop @{$filter->{typecast_current}}; # LIFO
+    }
+    if ($tagname eq 'label') {
+        $tagname = 'span';
+        $text    =~ s/label/span/;
     }
     if ($filter->no_style_tag($tagname)) {
         if ($filter->is_block_tag($tagname)) {
             $filter->{typecast_output} .= $text;
             $filter->{typecast_output} .= "</div>";
         } else {
-            $filter->{typecast_output} .= "</span>";
             $filter->{typecast_output} .= $text;
         }
     } else {
-        $filter->SUPER::end(@_);
+        $filter->SUPER::end($tagname, $text);
     }
+}
+
+sub text {
+    my $filter = shift;
+    my ($text, $is_cdata) = @_;
+
+    if ($text =~ /\S/) {
+        ## if the current tag has font-size style, adding 'span' child node
+        ## to apply it except span and textarea tags.
+        my $current = $filter->{typecast_current}->[-1];
+        unless ($current && $filter->no_decorate_tag($current->{tagname})) {
+            my %style;
+            for my $st (@{ $filter->{text_styles_tree} }) {
+                %style = ( %style, %$st );
+            }
+            my $style = '';
+            while (my ($key, $val) = each %style) {
+                $style .= "$key:$val;";
+            }
+            $text = qq(<span style="$style">$text</span>) if $style;
+        }
+    }
+
+    $filter->SUPER::text($text, $is_cdata);
 }
 
 sub do_append_attributes {
@@ -178,7 +229,7 @@ sub do_inline_stylesheet {
         push @cand, "#$id", "$tagname#$id";
     }
     if (my $parent = $filter->{typecast_current}->[-1]) {  # LIFO
-        my($tag, $class, $id) = @{$parent};
+        my($tag, $class, $id) = @$parent{qw( tagname class id )};
         push @cand, $class
             ? (".$class $tagname", "$tag.$class $tagname")
             : ("#$id $tagname", "$tag#$id $tagname");
@@ -193,17 +244,34 @@ sub do_inline_stylesheet {
 
     ## if no style is found, then use *
     @style = $filter->find_style('*') unless @style;
-
     if (@style) {
-        my $style = join '; ', map { ref($_) ? $_->properties : $_ } @style;
-        $attr->{style} = $style;
         push @$attrseq, "style" unless $orig_style;
+    }
+
+    ## push styles of the current TEXT node to the stack
+    my %text_styles = ();
+    for my $st (map { ref($_) ? $_->properties : $_ } @style) {
+        if ($st =~ /font\-size\s*:\s*([\w\-]+);?/) {
+            $text_styles{'font-size'} = $1;
+        }
+        elsif ($st =~ /(?<!background-)color\s*:\s*([#\w]+)/) {
+            $text_styles{color} = $1;
+        }
+        $attr->{style} .= $st . ';';
+    }
+    unless ($filter->no_text_tag($tagname)) {
+        push @{ $filter->{text_styles_tree} }, \%text_styles;
     }
 
     ## push the current tag/class or tag/id to the stack
     if (!($attr->{'/'} && $attr->{'/'} eq '__BOOLEAN__') &&
-        ($attr->{class} || $attr->{id})) {
-        push @{$filter->{typecast_current}}, [ $tagname, $attr->{class}, $attr->{id} ];
+            ($attr->{class} || $attr->{id})) {
+        push @{ $filter->{typecast_current} },
+            {
+                tagname => $tagname,
+                class   => ($attr->{class} || ''),
+                id      => ($attr->{id} || ''),
+            };
     }
 }
 
