@@ -33,6 +33,7 @@ my %emoticon_map = (
     digit9       => '&#xE6EA;',
     digit0       => '&#xE6EB;',
 
+    sharp        => '&#xE6E0;',
     config1      => '&#xE68E;',
     config2      => '&#xE68F;',
     config3      => '&#xE690;',

@@ -40,6 +40,7 @@ my %emoticon_map = (
     digit9       => '$FD',
     digit0       => '$FE',
 
+    sharp        => '$F0',
     config1      => '$F.',
     config2      => '$F-',
     config3      => '&F/',
@@ -51,6 +52,24 @@ my %emoticon_map = (
 
 sub lookup_emoticon {
     "\x1b" . $emoticon_map{$_[1]} . "\x0f";
+}
+
+sub do_output_tag {
+    my $filter = shift;
+    my($tagname, $attr, $attrseq) = @_;
+
+    # accesskey to directkey
+    if (exists $attr->{accesskey}) {
+        my $key = delete $attr->{accesskey};
+        $attr->{directkey} = $key;
+        push @$attrseq, 'directkey';
+        unless ($attr->{nonumber}) {
+            $attr->{nonumber} = 'nonumber';
+            push @$attrseq, 'nonumber';
+        }
+    }
+
+    $filter->SUPER::do_output_tag($tagname, $attr, $attrseq);
 }
 
 1;

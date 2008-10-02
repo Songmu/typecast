@@ -1,9 +1,9 @@
 # NTTDoCoMo
-#   http://www.nttdocomo.co.jp/p_s/imode/ip/index.html#ip
+#   http://www.nttdocomo.co.jp/service/imode/make/content/ip/index.html#ip
 # au
 #   http://www.au.kddi.com/ezfactory/tec/spec/ezsava_ip.html
-# Vodafone
-#   http://developers.vodafone.jp/dp/tech_svc/web/ip.php
+# Softbank
+#   http://creation.mb.softbank.jp/web/web_ip.html
 # WILLCOM
 #   http://www.willcom-inc.com/ja/service/contents_service/club_air_edge/for_phone/ip/
 nttdocomo:
@@ -15,6 +15,8 @@ nttdocomo:
         - 210.153.84.0/24
         - 210.153.86.0/24
         - 210.153.87.0/24
+        - 124.146.174.0/24
+        - 124.146.175.0/24
 vodafone:
     ua_regexp:
         - '^(?:SoftBank/|J-PHONE/|Vodafone/|MOT-)'
@@ -68,6 +70,7 @@ au:
         - 121.111.231.0/25
         - 121.111.231.160/27
         - 121.111.227.0/25
+        - 121.111.227.160/27
     domain:
         - ezweb.ne.jp
 willcom:
@@ -114,6 +117,9 @@ willcom:
         - 219.108.8.0/24
         - 219.108.9.0/24
         - 219.108.10.0/24
+        - 219.108.11.0/24
+        - 219.108.12.0/24
+        - 219.108.13.0/24
         - 219.108.14.0/24
         - 219.108.15.0/24
         - 221.119.0.0/24
@@ -171,11 +177,30 @@ willcom:
         - 61.198.172.0/24
         - 61.198.173.0/24
         - 61.198.252.0/24
+        - 61.198.132.0/24
+        - 61.198.133.0/24
+        - 61.198.134.0/24
+        - 61.198.135.0/24
+        - 61.198.136.0/24
+        - 61.198.137.0/24
+        - 61.198.160.0/24
+        - 61.198.162.0/24
+        - 61.198.164.0/24
+        - 61.198.171.0/24
+        - 61.198.174.0/24
+        - 61.198.175.0/24
+        - 61.198.251.0/24
+        - 210.169.92.0/24
+        - 210.169.93.0/24
+        - 210.169.94.0/24
+        - 210.169.95.0/24
+        - 210.169.96.0/24
+        - 210.169.97.0/24
+        - 210.169.98.0/24
+        - 210.169.99.0/24
 sixapart:
     ua_regexp:
         - '^SixApart'
     ip:
-        - 192.168.200.0/24
-        - 172.17.0.0/16
-        - 124.32.114.224/28
-
+        - 192.168.0.0/16
+        - 172.16.0.0/12

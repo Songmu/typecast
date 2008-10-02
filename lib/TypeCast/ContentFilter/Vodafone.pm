@@ -27,17 +27,6 @@ sub do_output_tag {
         push @$attrseq, 'mode';
     }
 
-    # accesskey to directkey
-    if (exists $attr->{accesskey}) {
-        my $key = delete $attr->{accesskey};
-        $attr->{directkey} = $key;
-        push @$attrseq, 'directkey';
-        unless ($attr->{nonumber}) {
-            $attr->{nonumber} = 'nonumber';
-            push @$attrseq, 'nonumber';
-        }
-    }
-
     $filter->SUPER::do_output_tag($tagname, $attr, $attrseq);
 }
 
