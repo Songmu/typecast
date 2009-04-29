@@ -4,6 +4,8 @@ package TypeCast::Emoticon::Encode;
 use strict;
 use warnings;
 
+use YAML::Tiny;
+
 my $EncodeMap;
 
 sub new {
@@ -24,10 +26,17 @@ sub new {
     die $@ if $@;
 
     unless ($EncodeMap) {
-        require YAML;
         my $file = $param{config} || MT->instance->find_config({ Config => 'conf/emoticon.yaml' });
-        $EncodeMap = YAML::LoadFile($file)
+        my $yaml = YAML::Tiny->read($file)
             or die "can't open file: $file";
+        if (ref $yaml) {
+            # skip over non-hash elements
+            shift @$yaml while @$yaml && ref($yaml->[0]) ne 'HASH';
+            $EncodeMap = $yaml->[0] if @$yaml;
+        }
+        die "can't parse file: $file"
+            unless $EncodeMap && %$EncodeMap;
+
         for (qw( docomo kddi softbank )) {
             $EncodeMap->{$_} = { reverse %{$EncodeMap->{$_}} };
         }
