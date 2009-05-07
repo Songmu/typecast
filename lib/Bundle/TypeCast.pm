@@ -36,4 +36,6 @@ Date::Parse
 
 HTML::Split
 
+Data::ObjectDriver
+
 =cut
